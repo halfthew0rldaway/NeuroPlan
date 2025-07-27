@@ -1,0 +1,26 @@
+[
+    {
+        "id": "fed9b833-cc75-492e-91ff-52d54ea9a25d",
+        "title": "wizzy thing",
+        "description": "cd C:\\Users\\bleu\\Desktop\\LIBURAN\\neuroplanv.2\\\npy -3.9 main.py",
+        "author": "bleu",
+        "status": "TODO",
+        "priority": "D",
+        "due_date": null,
+        "tags": [],
+        "parent_id": null,
+        "created_at": "2025-07-25T14:15:38.856204"
+    },
+    {
+        "id": "ddddfea9-a67a-454d-97de-c7f68bfb60bf",
+        "title": "abc",
+        "description": "abc\n",
+        "author": "abc",
+        "status": "TODO",
+        "priority": "D",
+        "due_date": null,
+        "tags": [],
+        "parent_id": "fed9b833-cc75-492e-91ff-52d54ea9a25d",
+        "created_at": "2025-07-27T09:19:25.555056"
+    }
+]

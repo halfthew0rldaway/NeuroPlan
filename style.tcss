@@ -1,0 +1,45 @@
+
+/* style.tcss - A simple stylesheet for the productivity app */
+Screen {
+    background: #282c34;
+    color: #abb2bf;
+    layout: vertical;
+}
+Header {
+    dock: top;
+    height: 1;
+    background: #21252b;
+}
+Footer {
+    dock: bottom;
+    height: 1;
+    background: #21252b;
+}
+#left-pane {
+    width: 40%;
+    border-right: heavy #4b5263;
+}
+#right-pane {
+    width: 60%;
+    padding: 0 1;
+}
+Tree {
+    padding: 1;
+}
+TaskDetail {
+    padding: 1;
+}
+#edit_dialog {
+    border: thick #5c6370;
+    padding: 1 2;
+    width: 60;
+    height: 10;
+    background: #3e4452;
+    align: center middle;
+}
+DataTable {
+    padding: 1;
+}
+#graph_view {
+    padding: 1;
+}

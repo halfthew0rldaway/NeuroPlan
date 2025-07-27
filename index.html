@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TermiPlan - Graph View</title>
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #282c34; color: #abb2bf; font-family: monospace; overflow: hidden; }
+        #graph-container { position: absolute; left: 0; top: 0; width: 70%; height: 100%; }
+        #sidebar { position: absolute; right: 0; top: 0; width: 30%; height: 100%; background-color: #21252b; box-sizing: border-box; padding: 20px; overflow-y: auto; border-left: 2px solid #1c1e24; }
+        h2 { color: #61afef; } p { line-height: 1.6; } b { color: #c678dd; }
+    </style>
+</head>
+<body>
+    <div id="graph-container"></div>
+    <div id="sidebar"><h2>Select a Node</h2><p>Click on a task to see details.</p></div>
+    <script>
+        const nodes = new vis.DataSet([
+  {
+    "id": "fed9b833-cc75-492e-91ff-52d54ea9a25d",
+    "label": "wizzy thing",
+    "shape": "dot",
+    "size": 15,
+    "font": {
+      "color": "#d3d3d3",
+      "strokeWidth": 0,
+      "align": "center"
+    },
+    "color": {
+      "border": "#61afef",
+      "background": "#61afef"
+    }
+  },
+  {
+    "id": "3d1c45d6-cb93-46a0-b7a1-f02bb83f679a",
+    "label": "game acc",
+    "shape": "dot",
+    "size": 40,
+    "font": {
+      "color": "#E6DB74",
+      "size": 20
+    },
+    "color": {
+      "border": "#E6DB74",
+      "background": "#E6DB74"
+    }
+  },
+  {
+    "id": "e9f9d1e4-9f23-46dc-bad7-dbc900bbd15e",
+    "label": "abc",
+    "shape": "dot",
+    "size": 15,
+    "font": {
+      "color": "#d3d3d3",
+      "strokeWidth": 0,
+      "align": "center"
+    },
+    "color": {
+      "border": "#61afef",
+      "background": "#61afef"
+    }
+  },
+  {
+    "id": "118fd5f1-4b32-420b-9e5c-b1d29ef85e3c",
+    "label": "todolist",
+    "shape": "dot",
+    "size": 15,
+    "font": {
+      "color": "#d3d3d3",
+      "strokeWidth": 0,
+      "align": "center"
+    },
+    "color": {
+      "border": "#61afef",
+      "background": "#61afef"
+    }
+  }
+]);
+        const edges = new vis.DataSet([
+  {
+    "from": "3d1c45d6-cb93-46a0-b7a1-f02bb83f679a",
+    "to": "fed9b833-cc75-492e-91ff-52d54ea9a25d",
+    "arrows": "to"
+  },
+  {
+    "from": "e9f9d1e4-9f23-46dc-bad7-dbc900bbd15e",
+    "to": "fed9b833-cc75-492e-91ff-52d54ea9a25d",
+    "arrows": "to"
+  },
+  {
+    "from": "118fd5f1-4b32-420b-9e5c-b1d29ef85e3c",
+    "to": "3d1c45d6-cb93-46a0-b7a1-f02bb83f679a",
+    "arrows": "to"
+  }
+]);
+        const fullData = {
+  "fed9b833-cc75-492e-91ff-52d54ea9a25d": {
+    "title": "wizzy thing",
+    "author": "bleu",
+    "status": "TODO",
+    "priority": "D",
+    "description": "cd C:\\Users\\bleu\\Desktop\\LIBURAN\\neuroplanv.2\\<br>py -3.9 main.py"
+  },
+  "3d1c45d6-cb93-46a0-b7a1-f02bb83f679a": {
+    "title": "game acc",
+    "author": "bleu",
+    "status": "TODO",
+    "priority": "D",
+    "description": "garena<br>id : ******<br>pw : ******"
+  },
+  "e9f9d1e4-9f23-46dc-bad7-dbc900bbd15e": {
+    "title": "abc",
+    "author": "blue",
+    "status": "TODO",
+    "priority": "D",
+    "description": "test"
+  },
+  "118fd5f1-4b32-420b-9e5c-b1d29ef85e3c": {
+    "title": "todolist",
+    "author": "bleu",
+    "status": "TODO",
+    "priority": "D",
+    "description": "make a proper diner"
+  }
+};
+        const container = document.getElementById('graph-container');
+        const sidebar = document.getElementById('sidebar');
+        const data = { nodes: nodes, edges: edges };
+        const options = {
+            edges: { color: '#5c6370' },
+            physics: { solver: 'forceAtlas2Based' }
+        };
+        const network = new vis.Network(container, data, options);
+
+        network.on('click', function (params) {
+            if (params.nodes.length > 0) {
+                const nodeId = params.nodes[0];
+                const nodeData = fullData[nodeId];
+                if (nodeData) {
+                    sidebar.innerHTML = `
+                        <h2>${nodeData.title}</h2>
+                        <p><b>Author:</b> ${nodeData.author}</p>
+                        <p><b>Status:</b> ${nodeData.status}</p>
+                        <p><b>Priority:</b> ${nodeData.priority}</p>
+                        <hr>
+                        <p>${nodeData.description}</p>
+                    `;
+                }
+            } else {
+                 sidebar.innerHTML = '<h2>Select a Node</h2><p>Click on a task to see details.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
+    
